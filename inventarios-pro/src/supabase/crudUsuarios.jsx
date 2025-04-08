@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+//import supabase from "./supabase";
 import Swal from "sweetalert2";
 
 export const InsertarUsuarios =async(p)=> {
