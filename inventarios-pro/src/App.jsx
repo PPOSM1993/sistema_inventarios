@@ -1,3 +1,5 @@
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 import styled, { ThemeProvider } from "styled-components";
 import {
   AuthContextProvider,
@@ -6,43 +8,51 @@ import {
   Dark,
   Sidebar,
   MenuHambur,
+  Login,
 } from "./index";
+
 import { createContext, useState } from "react";
 import { Device } from "./styles/breakpoints";
+import { useLocation } from "react-router-dom";
 
-export const ThemeContext = createContext();
+export const ThemeContext = createContext(null);
 function App() {
   const [themeuse, setTheme] = useState("dark");
   const theme = themeuse === "light" ? "light" : "dark";
   const themeStyle = theme === "light" ? Light : Dark;
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  const { pathname } = useLocation();
   return (
     <>
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <ThemeProvider theme={themeStyle}>
           <AuthContextProvider>
-            <Container className={sidebarOpen ? "active" : ""}>
-              <section className="ContentSidebar">
-                <Sidebar
-                  state={sidebarOpen}
-                  setState={() => setSidebarOpen(!sidebarOpen)}
-                />
-              </section>
-              <section className="ContentMenuambur">
-                <MenuHambur />
-              </section>
-              <section className="ContentRoutes">
-                <MyRoutes />
-              </section>
-            </Container>
+            {pathname == "/login" ? (
+              <Login />
+            ) : (
+              <Container className={sidebarOpen ? "active" : ""}>
+                <section className="ContentSidebar">
+                  <Sidebar
+                    state={sidebarOpen}
+                    setState={() => setSidebarOpen(!sidebarOpen)}
+                  />
+                </section>
+                <section className="ContentMenuambur">
+                  <MenuHambur />
+                </section>
+                <section className="ContentRoutes">
+                  <MyRoutes />
+                </section>
+              </Container>
+            )}
+
+            <ReactQueryDevtools initialIsOpen={false} />
           </AuthContextProvider>
         </ThemeProvider>
       </ThemeContext.Provider>
     </>
   );
 }
-
 const Container = styled.main`
   display: grid;
   grid-template-columns: 1fr;
