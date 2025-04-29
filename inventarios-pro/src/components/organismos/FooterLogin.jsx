@@ -15,7 +15,7 @@ export function FooterLogin() {
         <div className="separador"></div>
         <span>Todos los derechos reservados</span>
         <div className="separador"></div>
-        <span>© 2023 PPOSM1993 Malvados y Asociados</span>
+        <span>© 2025 PPOSM1993 Malvados y Asociados</span>
       </section>
     </Container>
   );
