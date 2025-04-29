@@ -10,7 +10,7 @@ import { MdOutlineInfo } from "react-icons/md";
 import { ThemeContext } from "../../App";
 export function LoginTemplate() {
   const { setTheme } = useContext(ThemeContext);
-  setTheme("dark");
+  setTheme("light");
   const { signInWithEmail } = useAuthStore();
   const [state, setState] = useState(false);
   const [stateInicio, setStateInicio] = useState(false);
@@ -33,7 +33,7 @@ export function LoginTemplate() {
   }
 
   return (
-    <Container>
+    <Container >
       <div className="contentLogo">
         <img src={logo}></img>
         <span>StockPRO</span>
@@ -44,7 +44,9 @@ export function LoginTemplate() {
 
       <div className="contentCard">
         <div className="card">
-          {state && <RegistrarAdmin setState={() => setState(!state)} />}
+       {
+        state && <RegistrarAdmin setState={()=>setState(!state)}/>
+       }
           <Titulo>StockPRO</Titulo>
           {stateInicio && (
             <TextoStateInicio>datos incorrectos</TextoStateInicio>
@@ -54,7 +56,7 @@ export function LoginTemplate() {
             Puedes crear una cuenta nueva ó <br></br>solicitar a tu empleador
             una. <MdOutlineInfo />
           </span>
-          <p className="frase">Control de Inventarios.</p>
+          <p className="frase">Controla tu inventario.</p>
           <form onSubmit={handleSubmit(iniciar)}>
             <InputText icono={<v.iconoemail />}>
               <input
@@ -216,7 +218,6 @@ const Container = styled.div`
     }
   }
 `;
-
 const Titulo = styled.span`
   font-size: 3rem;
   font-weight: 700;

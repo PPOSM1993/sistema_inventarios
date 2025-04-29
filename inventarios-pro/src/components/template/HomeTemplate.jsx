@@ -1,25 +1,64 @@
 import styled from "styled-components";
-import { Btnsave
- } from "../moleculas/BtnSave";
-import { useAuthStore } from "../../stores/AuthStore";
-export function HomeTemplate() {
+import { Btnsave, useAuthStore, Header, Title } from "../../index";
+import { useState } from "react";
 
-  const {signOut} = useAuthStore()
+
+
+export function HomeTemplate() {
+  const [state, setState] = useState(false);
+
 
   return (
     <Container>
-      <h1>Home Template</h1>
-      <Btnsave titulo={ "Cerrar Sesion" } bgcolor={ "#f8f2fd" } funcion={signOut} />
+      <header className="header">
+        <Header stateConfig={{ state: state, setState: () => setState(!state) }} />
+      </header>
+      <section className="area1">
+        <Title>Tu empresa</Title>
+      </section>
+
+      <section className="area2">
+        <Title>Container</Title>
+      </section>
+     
+      <section className="main">
+      </section>
     </Container>
   );
 }
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  position: relative;
   overflow: hidden;
+  height: 100vh;
+  width: 100%;
   background-color: ${(props) => props.theme.bgtotal};
   color: ${({ theme }) => theme.text};
-  width: 100%;
+  display: grid;
+  padding: 15px;
+  grid-template:
+    "header" 100px
+    "area1" 100px
+    "area2" 100px
+    "main" auto;
+  .header {
+    grid-area: header;
+    background-color: rgba(103, 93, 241, 0.14);
+  }
+  .area1 {
+    grid-area: area1;
+    background-color: rgba(26, 148, 229, 0.14);
+    display: flex;
+    align-items: center;
+  }
+
+  .area2 {
+    grid-area: area2;
+    background-color: rgba(255, 81, 0, 0.14);
+  }
+
+  .main {
+    grid-area: main;
+    background-color: rgba(0, 170, 85, 0.14);
+  }
+
 `;
