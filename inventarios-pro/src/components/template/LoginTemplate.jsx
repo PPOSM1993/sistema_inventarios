@@ -143,7 +143,7 @@ const Container = styled.div`
   }
   .contentCard {
     grid-column: 2;
-    background-color: #ffffff;
+    background-color:rgb(245, 245, 245);
     background-size: cover;
     z-index: 100;
     position: relative;

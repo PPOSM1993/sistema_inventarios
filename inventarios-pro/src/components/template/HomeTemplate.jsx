@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Btnsave, useAuthStore, Header, Title } from "../../index";
+import { BannerEmpresa, Btnsave, Header, Title } from "../../index";
 import { useState } from "react";
 
 
@@ -16,12 +16,9 @@ export function HomeTemplate() {
       <section className="area1">
         <Title>Tu empresa</Title>
       </section>
-
-      <section className="area2">
-        <Title>Container</Title>
-      </section>
      
       <section className="main">
+        <BannerEmpresa />
       </section>
     </Container>
   );
@@ -42,23 +39,24 @@ const Container = styled.div`
     "main" auto;
   .header {
     grid-area: header;
-    background-color: rgba(103, 93, 241, 0.14);
+    background-color: rgba(248, 98, 11, 0);
   }
   .area1 {
     grid-area: area1;
-    background-color: rgba(26, 148, 229, 0.14);
+    background-color: rgba(248, 98, 11, 0);
     display: flex;
     align-items: center;
+    justify-content: end;
   }
 
-  .area2 {
-    grid-area: area2;
-    background-color: rgba(255, 81, 0, 0.14);
-  }
 
   .main {
     grid-area: main;
-    background-color: rgba(0, 170, 85, 0.14);
+    background-color: rgba(248, 98, 11, 0);
   }
 
 `;
+
+//background-color: rgba(0, 170, 85, 0.14);
+//background-color: rgba(248, 98, 11, 0);
+//background-color: rgba(248, 98, 11, 0.14);
