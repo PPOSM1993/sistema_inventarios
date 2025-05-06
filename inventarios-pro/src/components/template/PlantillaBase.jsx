@@ -2,27 +2,19 @@ import styled from "styled-components";
 import { Btnsave, useAuthStore, Header, Title } from "../../index";
 import { useState } from "react";
 
-
-
 export function PlantillaBase() {
   const [state, setState] = useState(false);
-
 
   return (
     <Container>
       <header className="header">
-        <Header stateConfig={{ state: state, setState: () => setState(!state) }} />
+        <Header
+          stateConfig={{ state: state, setState: () => setState(!state) }}
+        />
       </header>
-      <section className="area1">
-        <Title>Tu empresa</Title>
-      </section>
-
-      <section className="area2">
-        <Title>Container</Title>
-      </section>
-     
-      <section className="main">
-      </section>
+      <section className="area1"></section>
+      <section className="area2"></section>
+      <section className="main"></section>
     </Container>
   );
 }
@@ -60,5 +52,4 @@ const Container = styled.div`
     grid-area: main;
     background-color: rgba(0, 170, 85, 0.14);
   }
-
 `;
