@@ -5,7 +5,7 @@ import { DataModulosConfiguracion } from "../../utils/dataEstatica";
 export function ConfiguracionTemplate() {
   return (
     <Container>
-
+      xD
     </Container>
   );
 }
