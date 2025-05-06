@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { TablaMarca } from "../../index";
 
 export function MarcaTemplate({data} ) {
   return (
     <Container>
-      xD
+      <TablaMarca data={data} />
     </Container>
   );
 }
