@@ -1,4 +1,5 @@
 export { default as App } from './App';
+export * from './components/atomos/AccionTabla';
 export * from './components/atomos/Icono';
 export * from './components/atomos/Title';
 export * from './components/moleculas/BtnCircular';
@@ -16,6 +17,8 @@ export * from './components/organismos/formularios/InputText';
 export * from './components/organismos/formularios/RegistrarAdmin';
 export * from './components/organismos/sidebar/Sidebar';
 export * from './components/organismos/sidebar/SidebarCard';
+export * from './components/organismos/tablas/ContentAccionesTabla';
+export * from './components/organismos/tablas/TablaMarca';
 export * from './components/template/ConfiguracionTemplate';
 export * from './components/template/HomeTemplate';
 export * from './components/template/LoginTemplate';
