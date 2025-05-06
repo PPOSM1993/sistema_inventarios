@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BannerEmpresa, Btnsave, Header, Title } from "../../index";
+import { BannerEmpresa, Btnsave, Header, Title, useEmpresaStore } from "../../index";
 import { useState } from "react";
 
 

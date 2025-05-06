@@ -3,9 +3,8 @@ import { v } from "../../styles/variables";
 import { CardDatosEmpresa } from "../moleculas/CardDatosEmpresa";
 import { useEmpresaStore } from "../../stores/EmpresaStore";
 
-
 export function BannerEmpresa() {
-  const {dataempresa} = useEmpresaStore();
+  const { dataempresa, contadorusuarios } = useEmpresaStore();
 
   return (
     <Container>
@@ -18,8 +17,11 @@ export function BannerEmpresa() {
           Stock PRO te mantiene siempre informado del mercado de tu empresa
         </div>
         <ContentCards>
-          <CardDatosEmpresa titulo="Moneda" valor={dataempresa.empresa?.simbolomoneda} />
-          <CardDatosEmpresa titulo="Usarios" valor={dataempresa.empresa?.usuarios} />
+          <CardDatosEmpresa
+            titulo="Moneda"
+            valor={dataempresa.empresa?.simbolomoneda}
+          />
+          <CardDatosEmpresa titulo="Usarios" valor={contadorusuarios} />
         </ContentCards>
       </div>
       <div className="contentsvg">
@@ -117,9 +119,7 @@ const Container = styled.div`
     }
   }
   .contentsvg {
-
     svg {
-
     }
   }
   &:hover {
