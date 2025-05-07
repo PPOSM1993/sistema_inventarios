@@ -34,6 +34,7 @@ export function MyRoutes() {
       <Route path="/login" element={<Login />} />
       <Route element={<ProtectedRoute user={user} redirectTo="/login" />}>
         <Route path="/" element={<Home />} />
+        <Route path="/configurar" element={<Configuracion />} />
       </Route>
     </Routes>
   );
