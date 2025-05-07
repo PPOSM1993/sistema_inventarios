@@ -6,7 +6,6 @@ import {
   InsertarMarca,
   MostrarMarca,
 } from "../index";
-
 export const useMarcaStore = create((set, get) => ({
   buscador: "",
   setBuscador: (p) => {
@@ -14,13 +13,13 @@ export const useMarcaStore = create((set, get) => ({
   },
   datamarca: [],
   marcaItemSelect: [],
-  paramentos: {},
+  parametros: {},
   mostrarMarca: async (p) => {
-    const reponse = await MostrarMarca(p);
-    set({ paramentos: p });
-    set({ datamarca: reponse });
-    set({ marcaItemSelect: reponse[0] });
-    return reponse;
+    const response = await MostrarMarca(p);
+    set({ parametros: p });
+    set({ datamarca: response });
+    set({ marcaItemSelect: response[0] });
+    return response;
   },
   selectMarca: (p) => {
     set({ marcaItemSelect: p });
@@ -28,8 +27,14 @@ export const useMarcaStore = create((set, get) => ({
   insertarMarca: async (p) => {
     await InsertarMarca(p);
     const { mostrarMarca } = get();
-    const { paramentos } = get();
-    set(mostrarMarca(paramentos));
+    const { parametros } = get();
+    set(mostrarMarca(parametros));
+  },
+  eliminarMarca: async (p) => {
+    await EliminarMarca(p);
+    const { mostrarMarca } = get();
+    const { parametros } = get();
+    set(mostrarMarca(parametros));
   },
   editarMarca: async (p) => {
     await EditarMarca(p);

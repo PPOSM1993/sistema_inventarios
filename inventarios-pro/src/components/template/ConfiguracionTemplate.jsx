@@ -1,10 +1,14 @@
 import styled from "styled-components";
-import estrellacuadros from "../../assets/estrellacuadros.svg";
 import { Link } from "react-router-dom";
 import { DataModulosConfiguracion } from "../../utils/dataEstatica";
+
+
 export function ConfiguracionTemplate() {
+
   return (
     <Container>
+
+
       <div id="cards">
         {DataModulosConfiguracion.map((item, index) => {
           return (
