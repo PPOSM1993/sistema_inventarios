@@ -27,7 +27,7 @@ export * from './components/template/PlantillaBase';
 export * from './context/AuthContext';
 export * from './hooks/ProtectedRoute';
 export * from './main';
-export * from './pages/Configuiracion';
+export * from './pages/Configuracion';
 export * from './pages/Home';
 export * from './pages/Login';
 export * from './pages/Marca';
