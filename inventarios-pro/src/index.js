@@ -1,8 +1,10 @@
 export { default as App } from './App';
 export * from './components/atomos/AccionTabla';
+export * from './components/atomos/ContentFiltro';
 export * from './components/atomos/Icono';
 export * from './components/atomos/Title';
 export * from './components/moleculas/BtnCircular';
+export * from './components/moleculas/BtnFiltro';
 export * from './components/moleculas/BtnSave';
 export * from './components/moleculas/CardDatosEmpresa';
 export * from './components/moleculas/ErrorMolecula';
@@ -15,6 +17,7 @@ export * from './components/organismos/MenuHambur';
 export * from './components/organismos/ToggleTema';
 export * from './components/organismos/formularios/InputText';
 export * from './components/organismos/formularios/RegistrarAdmin';
+export * from './components/organismos/formularios/RegistrarMarca';
 export * from './components/organismos/sidebar/Sidebar';
 export * from './components/organismos/sidebar/SidebarCard';
 export * from './components/organismos/tablas/ContentAccionesTabla';
