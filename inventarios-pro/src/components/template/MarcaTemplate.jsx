@@ -1,10 +1,46 @@
 import styled from "styled-components";
-import { TablaMarca } from "../../index";
+import {
+  TablaMarca,
+  Header,
+  Title,
+  RegistrarMarca,
+  BtnFiltro,
+  ContentFiltro,
+} from "../../index";
 
-export function MarcaTemplate({data} ) {
+import { useState } from "react";
+
+export function MarcaTemplate({ data }) {
+  const [state, setState] = useState(false);
+  const [dataSelect, setdataSelect] = useState([]);
+  const [accion, setAccion] = useState("");
+  const [openRegistro, SetopenRegistro] = useState(false);
+
   return (
     <Container>
-      <TablaMarca data={data} />
+      {openRegistro && (
+        <RegistrarMarca
+          dataSelect={dataSelect}
+          accion={accion}
+          onClose={() => SetopenRegistro(!openRegistro)}
+        />
+      )}
+      <header className="header">
+        <Header
+          stateConfig={{ state: state, setState: () => setState(!state) }}
+        />
+      </header>
+      <section className="area1">
+        <ContentFiltro>
+          <Title>Marca</Title>
+          <BtnFiltro/>
+        </ContentFiltro>
+
+      </section>
+      <section className="area2"></section>
+      <section className="main">
+        <TablaMarca data={data} />
+      </section>
     </Container>
   );
 }

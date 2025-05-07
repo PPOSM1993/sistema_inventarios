@@ -7,9 +7,39 @@ import {
   getSortedRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { v, ContentAccionesTabla } from "../../../index";
+import { v, ContentAccionesTabla, useMarcaStore } from "../../../index";
+import Swal from "sweetalert2";
+//import { useState } from "react";
 
 export function TablaMarca({ data }) {
+  const { eliminarMarca } = useMarcaStore();
+  const editar = () => {
+    console.log("editar");
+  };
+
+  const eliminar = (p) => {
+    if (p.descripcion === "Generica") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Este registro no se permite eliminar ya que es valor por defecto.",
+      });
+      return;
+    }
+    Swal.fire({
+      title: "¿Estás seguro(a)(e)?",
+      text: "Una vez eliminado, ¡no podrá recuperar este registro!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await eliminarMarca({ id: p.id });
+      }
+    });
+  };
   const columns = [
     {
       accessorKey: "descripcion",
@@ -22,7 +52,10 @@ export function TablaMarca({ data }) {
       enableSorting: false,
       cell: (info) => (
         <td className="ContentCell">
-          <ContentAccionesTabla />
+          <ContentAccionesTabla
+            funcionEditar={() => editar(info.row.original)}
+            funcionEliminar={() => eliminar(info.row.original)}
+          />
         </td>
       ),
     },
@@ -35,9 +68,10 @@ export function TablaMarca({ data }) {
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
+
   return (
     <Container>
-      <table>
+      <table className="responsive-table">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -72,7 +106,6 @@ const Container = styled.div`
   }
   @media (min-width: ${v.bphomer}) {
     margin: 2em auto;
-    /* max-width: ${v.bphomer}; */
   }
   .responsive-table {
     width: 100%;
