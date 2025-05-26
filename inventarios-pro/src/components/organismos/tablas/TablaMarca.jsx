@@ -7,14 +7,38 @@ import {
   getSortedRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { v, ContentAccionesTabla, useMarcaStore } from "../../../index";
+import {
+  v,
+  ContentAccionesTabla,
+  useMarcaStore,
+  Paginacion,
+} from "../../../index";
 import Swal from "sweetalert2";
+import { FaArrowsAltV } from "react-icons/fa";
+import { useState } from "react";
+
 //import { useState } from "react";
 
-export function TablaMarca({ data }) {
+export function TablaMarca({
+  data,
+  SetopenRegistro,
+  setdataSelect,
+  setAccion,
+}) {
+  const [pagina, setPagina] = useState(1);
   const { eliminarMarca } = useMarcaStore();
-  const editar = () => {
-    console.log("editar");
+  const editar = (data) => {
+    if (data.descripcion === "Generica") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Este registro no se permite eliminar ya que es valor por defecto.",
+      });
+      return;
+    }
+    SetopenRegistro(true);
+    setdataSelect(data);
+    setAccion("Editar");
   };
 
   const eliminar = (p) => {
@@ -76,7 +100,23 @@ export function TablaMarca({ data }) {
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id}>{header.column.columnDef.header}</th>
+                <th key={header.id}>
+                  {header.column.columnDef.header}
+                  {header.column.getCanSort() && (
+                    <span
+                      style={{ cursor: "pointer" }}
+                      onClick={header.column.getToggleSortingHandler()}
+                    >
+                      <FaArrowsAltV />
+                    </span>
+                  )}
+                  {
+                    {
+                      asc: " 🔼",
+                      desc: " 🔽",
+                    }[header.column.getIsSorted()]
+                  }
+                </th>
               ))}
             </tr>
           ))}
@@ -93,6 +133,13 @@ export function TablaMarca({ data }) {
           ))}
         </tbody>
       </table>
+      <Paginacion
+        table={table}
+        irinicio={() => table.setPageIndex(0)}
+        pagina={table.getState().pagination.pageIndex + 1}
+        setPagina={setPagina}
+        maximo={table.getPageCount()}
+      />
     </Container>
   );
 }

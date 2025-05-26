@@ -6,6 +6,9 @@ import {
   RegistrarMarca,
   BtnFiltro,
   ContentFiltro,
+  v,
+  Buscador,
+  useMarcaStore
 } from "../../index";
 
 import { useState } from "react";
@@ -15,6 +18,13 @@ export function MarcaTemplate({ data }) {
   const [dataSelect, setdataSelect] = useState([]);
   const [accion, setAccion] = useState("");
   const [openRegistro, SetopenRegistro] = useState(false);
+  const nuevoRegistro = () => {
+    SetopenRegistro(!openRegistro);
+    setAccion("Nuevo");
+    setdataSelect([]);
+  };
+
+  const { setBuscador } = useMarcaStore();
 
   return (
     <Container>
@@ -33,13 +43,24 @@ export function MarcaTemplate({ data }) {
       <section className="area1">
         <ContentFiltro>
           <Title>Marca</Title>
-          <BtnFiltro/>
+          <BtnFiltro
+            funcion={nuevoRegistro}
+            bgcolor="#f6f3f3"
+            textcolor="#353535"
+            icono={<v.agregar />}
+          />
         </ContentFiltro>
-
       </section>
-      <section className="area2"></section>
+      <section className="area2">
+        <Buscador setBuscador={setBuscador} />
+      </section>
       <section className="main">
-        <TablaMarca data={data} />
+        <TablaMarca
+          data={data}
+          SetopenRegistro={SetopenRegistro}
+          setdataSelect={setdataSelect}
+          setAccion={setAccion}
+        />
       </section>
     </Container>
   );
@@ -74,7 +95,7 @@ const Container = styled.div`
     /* background-color: rgba(77, 237, 106, 0.14); */
     display: flex;
     align-items: center;
-    justify-content:end;
+    justify-content: end;
   }
   .main {
     grid-area: main;
