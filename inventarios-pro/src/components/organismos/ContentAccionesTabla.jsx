@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AccionTabla, v } from "../../../index";
+import { AccionTabla, v } from "../../index";
 
 export function ContentAccionesTabla({ funcionEditar, funcionEliminar }) {
   return (

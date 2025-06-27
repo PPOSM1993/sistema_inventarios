@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import {
   Configuracion,
   Marca,
+  Categorias,
   ErrorMolecula,
   Home,
   Login,
@@ -10,6 +11,7 @@ import {
   UserAuth,
   useEmpresaStore,
   useUsuariosStore,
+
 } from "../index";
 import { useQuery } from "@tanstack/react-query";
 
@@ -36,6 +38,7 @@ export function MyRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/configurar" element={<Configuracion />} />
         <Route path="/configurar/marca" element={<Marca />} />
+        <Route path="/configurar/categorias" element={<Categorias />} />
       </Route>
     </Routes>
   );
