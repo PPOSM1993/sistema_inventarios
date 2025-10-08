@@ -5,6 +5,8 @@ import { InputText, Btnsave, useMarcaStore, ConvertirCapitalize } from "../../..
 import { useForm } from "react-hook-form";
 import { useEmpresaStore } from "../../../stores/EmpresaStore";
 //import { useEffect } from "react";
+
+
 export function RegistrarMarca({ onClose, dataSelect, accion }) {
   const { insertarMarca, editarMarca } = useMarcaStore();
   const { dataempresa } = useEmpresaStore();
