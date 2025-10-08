@@ -8,9 +8,16 @@ import carrito from "../../assets/carrito.svg";
 import logo from "../../assets/inventarioslogo.png";
 import { MdOutlineInfo } from "react-icons/md";
 import { ThemeContext } from "../../App";
+
+import { useEffect } from "react"; // <-- import
+
 export function LoginTemplate() {
   const { setTheme } = useContext(ThemeContext);
-  setTheme("light");
+
+  useEffect(() => {
+    setTheme("light"); // <-- mover aquí
+  }, []); // <-- ejecutar solo una vez al montar
+
   const { signInWithEmail } = useAuthStore();
   const [state, setState] = useState(false);
   const [stateInicio, setStateInicio] = useState(false);
@@ -20,6 +27,7 @@ export function LoginTemplate() {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
   async function iniciar(data) {
     const response = await signInWithEmail({
       correo: data.correo,
@@ -33,7 +41,7 @@ export function LoginTemplate() {
   }
 
   return (
-    <Container >
+    <Container>
       <div className="contentLogo">
         <img src={logo}></img>
         <span>StockPRO</span>
@@ -44,17 +52,12 @@ export function LoginTemplate() {
 
       <div className="contentCard">
         <div className="card">
-       {
-        state && <RegistrarAdmin setState={()=>setState(!state)}/>
-       }
+          {state && <RegistrarAdmin setState={() => setState(!state)} />}
           <Titulo>StockPRO</Titulo>
-          {stateInicio && (
-            <TextoStateInicio>datos incorrectos</TextoStateInicio>
-          )}
+          {stateInicio && <TextoStateInicio>datos incorrectos</TextoStateInicio>}
           <span className="ayuda">
-            {" "}
-            Puedes crear una cuenta nueva ó <br></br>solicitar a tu empleador
-            una. <MdOutlineInfo />
+            Puedes crear una cuenta nueva ó <br></br>solicitar a tu empleador una.{" "}
+            <MdOutlineInfo />
           </span>
           <p className="frase">Controla tu inventario.</p>
           <form onSubmit={handleSubmit(iniciar)}>
@@ -63,9 +66,7 @@ export function LoginTemplate() {
                 className="form__field"
                 type="text"
                 placeholder="email"
-                {...register("correo", {
-                  required: true,
-                })}
+                {...register("correo", { required: true })}
               />
               <label className="form__label">email</label>
               {errors.correo?.type === "required" && <p>Campo requerido</p>}
@@ -75,9 +76,7 @@ export function LoginTemplate() {
                 className="form__field"
                 type="password"
                 placeholder="contraseña"
-                {...register("pass", {
-                  required: true,
-                })}
+                {...register("pass", { required: true })}
               />
               <label className="form__label">pass</label>
               {errors.pass?.type === "required" && <p>Campo requerido</p>}

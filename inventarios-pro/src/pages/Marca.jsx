@@ -7,7 +7,7 @@ import {
 } from "../index";
 
 export function Marca() {
-  const { mostrarMarca, datamarca, buscarMarca, buscador } = useMarcaStore();
+  const { mostrarMarca, datamarca, buscarMarca, buscador, } = useMarcaStore();
   const { dataempresa } = useEmpresaStore();
   const { isLoading, error } = useQuery({
     queryKey: ["mostrar marca", { id_empresa: dataempresa?.id }],

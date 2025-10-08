@@ -5,6 +5,7 @@ import {
   Categorias,
   ErrorMolecula,
   Home,
+  Productos,
   Login,
   ProtectedRoute,
   SpinnerLoader,
@@ -39,6 +40,8 @@ export function MyRoutes() {
         <Route path="/configurar" element={<Configuracion />} />
         <Route path="/configurar/marca" element={<Marca />} />
         <Route path="/configurar/categorias" element={<Categorias />} />
+        <Route path="/configurar/productos" element={<Productos />} />a
+
       </Route>
     </Routes>
   );
